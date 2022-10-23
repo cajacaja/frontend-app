@@ -1,0 +1,57 @@
+<div class="container col-6 mt-5">
+    <h3>Create user</h3>
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()" #form="ngForm">
+
+        <div class="mb-3">
+          <label for="firstName" class="form-label">First name</label>
+          <input type="text" class="form-control" id="firstName" formControlName="firstName">
+            <div *ngIf="(userForm.controls.firstName.touched || form.submitted) && userForm.controls.firstName.invalid"
+            class="alert alert-danger mt-1" role="alert">
+                This field is required!
+            </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="lastName" class="form-label">Last name</label>
+          <input type="text" class="form-control" id="lastName" formControlName="lastName">
+            <div *ngIf="(userForm.controls.lastName.touched || form.submitted) && userForm.controls.lastName.invalid"
+                class="alert alert-danger mt-1" role="alert">
+                This field is required!
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">E-mail</label>
+            <input type="email" class="form-control" id="email" formControlName="email">
+            <div *ngIf="(userForm.controls.email.touched || form.submitted) && !userForm.controls.email.valid"
+                class="alert alert-danger mt-1" role="alert">
+                Please provide valid email
+            </div>
+        </div>
+        
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" formControlName="username">
+            <div *ngIf="(userForm.controls.username.touched || form.submitted) && userForm.controls.username.invalid"
+            class="alert alert-danger mt-1" role="alert">
+            This field is required!
+        </div>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" formControlName="password">
+            <div *ngIf="(userForm.controls.lastName.touched || form.submitted) && userForm.controls.lastName.invalid"
+            class="alert alert-danger mt-1" role="alert">
+            This field is required!
+        </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="status" class="form-label">User status</label>
+            <select class="form-select" formControlName="status" id="status">
+              <option *ngFor="let status of userStatus" [value]="status">{{ status }}</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">Submit</button>
+      </form>
+</div>

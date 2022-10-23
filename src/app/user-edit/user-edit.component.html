@@ -1,0 +1,40 @@
+<div class="container col-6 mt-5">
+    <h3>Edit user</h3>
+    <form [formGroup]="userEditForm" (ngSubmit)="onSubmit()" #form="ngForm">
+
+        <div class="mb-3">
+          <label for="firstName" class="form-label">First name</label>
+          <input type="text" class="form-control" id="firstName" formControlName="firstName">
+            <div *ngIf="(userEditForm.controls.firstName.touched || form.submitted) && userEditForm.controls.firstName.invalid"
+            class="alert alert-danger mt-1" role="alert">
+                This field is required!
+            </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="lastName" class="form-label">Last name</label>
+          <input type="text" class="form-control" id="lastName" formControlName="lastName">
+            <div *ngIf="(userEditForm.controls.lastName.touched || form.submitted) && userEditForm.controls.lastName.invalid"
+                class="alert alert-danger mt-1" role="alert">
+                This field is required!
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">E-mail</label>
+            <input type="email" class="form-control" id="email" formControlName="email">
+            <div *ngIf="(userEditForm.controls.email.touched || form.submitted) && !userEditForm.controls.email.valid"
+                class="alert alert-danger mt-1" role="alert">
+                Please provide valid email
+            </div>
+        </div>
+    
+        <div class="mb-3">
+            <label for="status" class="form-label">User status</label>
+            <select class="form-select" formControlName="status" id="status">
+              <option *ngFor="let status of userStatus" [value]="status">{{ status }}</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="userEditForm.invalid">Submit</button>
+      </form>
+</div>

@@ -1,0 +1,53 @@
+<div class="container">
+    <h3>Tabela</h3>
+    <div class="row mb-1">
+        <div class="col-5">
+            <div class="input-group">
+                <select #options class="form-select" (change)="onSelected(options.value)">
+                  <option value="" selected>Filter by</option>
+                  <option *ngFor="let filter of filterBy" [value]="filter">{{ filter }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-5">
+            <a class="btn btn-success" routerLink="create" role="button">Create</a>
+        </div>
+        
+    </div>
+  
+    <table class="table table-bordered">
+    
+        <thead>
+            <tr>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of userList">
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.status}}</td>
+                <td>
+                    <a class="btn btn-warning m-1" [routerLink]="'permissions/' + user.id" role="button">Permissions</a>
+                    <a class="btn btn-primary m-1" [routerLink]="'edit/' + user.id" role="button">Edit</a>
+                    <a class="btn btn-danger" role="button" (click)="deleteUser(user.id)">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation example" *ngIf="totalPages > 1">
+        <ul class="pagination">
+          <li class="page-item" [hidden]="!page"><a class="page-link" (click)="previousPage()">Previous</a></li>
+          <li class="page-item" *ngFor="let pageNumber of pages"><a class="page-link" (click)="setPageNumber(pageNumber)">{{pageNumber + 1}}</a></li>
+          <li class="page-item" [hidden]="page === (totalPages-1)"><a class="page-link" (click)="nextPage()">Next</a></li>
+        </ul>
+      </nav>
+</div>
+

@@ -1,0 +1,20 @@
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+          <h4>User permissions</h4>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" [checked]="codePermission" (change)="codePermission = !codePermission" id="code">
+            <label class="form-check-label" for="code">
+                Code permission
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" [checked]="descriptionPermission" (change)="descriptionPermission = !descriptionPermission" id="description">
+            <label class="form-check-label" for="description">
+                Description permission
+            </label>
+          </div>
+        </div>
+        <a class="btn btn-primary m-1 col-3" role="button" (click)="changePermissions()">Change permissions</a>
+      </div>
+</div>
